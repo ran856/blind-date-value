@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>相亲市场价值测评｜12 题测出你的估值段位</title>
+<meta name="description" content="纯娱乐：12 道题、2 分钟，测出你在相亲市场的估值段位、优势项与短板项，可生成 3:4 分享图。">
+<meta name="theme-color" content="#ff2e63">
+<meta property="og:title" content="相亲市场价值测评｜12 题测出你的估值段位">
+<meta property="og:description" content="12 道题，2 分钟，测出你的估值段位、优势项和短板项。纯娱乐，不构成任何建议。">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --red:#ff2e63; --red-soft:#ff6b8a; --pink:#ffe3ea; --pink-bg:#fff5f7;
+    --ink:#1f1f24; --ink2:#5b5b66; --ink3:#8e8e99;
+    --card:#fff; --line:rgba(0,0,0,.07);
+    --radius:22px;
+    --shadow:0 12px 34px rgba(255,46,99,.10), 0 2px 8px rgba(0,0,0,.04);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent}
+  html,body{margin:0; padding:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(120% 60% at 50% -10%, #ffe1e9 0%, rgba(255,225,233,0) 60%),
+      linear-gradient(180deg,#fff7f9 0%,#fff 45%,#fff 100%);
+    background-attachment:fixed;
+    min-height:100vh;
+    line-height:1.6;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  .app{max-width:520px; margin:0 auto; padding:22px 16px calc(34px + env(safe-area-inset-bottom))}
+  .top{display:flex; align-items:center; justify-content:space-between; margin-bottom:14px; padding:0 4px}
+  .brand{font-size:13px; font-weight:700; letter-spacing:.4px; color:var(--red)}
+  .brand span{color:var(--ink3); font-weight:500; margin-left:6px}
+  .pill{font-size:11px; color:var(--ink2); border:1px solid var(--line); border-radius:999px; padding:3px 10px; background:#fff}
+
+  .card{
+    background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    padding:24px 20px; border:1px solid rgba(255,255,255,.7);
+    animation:pop .3s cubic-bezier(.2,.9,.3,1.2);
+  }
+  @keyframes pop{from{opacity:0; transform:translateY(10px) scale(.99)} to{opacity:1; transform:none}}
+
+  /* 封面 */
+  .eyebrow{display:inline-block; font-size:12px; color:var(--red); background:var(--pink); border-radius:999px; padding:4px 12px; font-weight:600; margin-bottom:14px}
+  h1{font-size:34px; line-height:1.25; margin:0 0 12px; letter-spacing:-.5px}
+  .grad{background:linear-gradient(100deg,var(--red) 10%,var(--red-soft) 90%); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .lead{margin:0 0 18px; color:var(--ink2); font-size:15px}
+  .lead strong{color:var(--ink); font-weight:600}
+  .meta{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:22px}
+  .meta span{font-size:12px; color:var(--ink2); background:#faf6f7; border:1px solid var(--line); border-radius:10px; padding:5px 10px}
+  .tiny{font-size:12px; color:var(--ink3); text-align:center; margin:14px 0 0}
+
+  .btn{display:block; width:100%; border:0; border-radius:16px; font-size:16px; font-weight:600; padding:15px 16px; cursor:pointer; font-family:inherit; transition:transform .12s ease, box-shadow .2s ease, background .2s ease}
+  .btn:active{transform:scale(.985)}
+  .btn.primary{background:linear-gradient(100deg,var(--red) 0%,var(--red-soft) 100%); color:#fff; box-shadow:0 10px 22px rgba(255,46,99,.28)}
+  a.btn{display:block; text-align:center; text-decoration:none; line-height:1.4}
+  .btn.primary:hover{box-shadow:0 12px 26px rgba(255,46,99,.34)}
+  .btn.ghost{background:#fff; color:var(--ink2); border:1px solid var(--line); margin-top:10px}
+  .btn.ghost:hover{background:#faf7f8}
+  .btn.small{width:auto; display:inline-block; font-size:13px; padding:9px 14px; border-radius:12px}
+  .btn[disabled]{opacity:.5; pointer-events:none}
+
+  /* 答题 */
+  .prog{height:8px; border-radius:999px; background:var(--pink); overflow:hidden; margin-bottom:10px}
+  .prog-bar{height:100%; width:0; border-radius:999px; background:linear-gradient(90deg,var(--red),var(--red-soft)); transition:width .3s ease}
+  .prog-label{display:flex; justify-content:space-between; font-size:12px; color:var(--ink3); margin-bottom:18px}
+  .q{font-size:20px; line-height:1.5; margin:0 0 18px; letter-spacing:-.2px}
+  .opts{display:flex; flex-direction:column; gap:10px; margin-bottom:16px}
+  .opt{
+    text-align:left; font-family:inherit; font-size:15px; color:var(--ink); background:#fff;
+    border:1.5px solid var(--line); border-radius:14px; padding:14px 15px; cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .12s ease; line-height:1.5;
+  }
+  .opt:hover{border-color:var(--red-soft); background:#fff8fa}
+  .opt:active{transform:scale(.99)}
+
+  /* 结果 */
+  .ring-wrap{display:flex; flex-direction:column; align-items:center; margin-bottom:6px}
+  .ring{
+    width:172px; height:172px; border-radius:50%; display:grid; place-items:center;
+    background:conic-gradient(var(--red) calc(var(--p, 0) * 1%), var(--pink) 0);
+    box-shadow:0 8px 22px rgba(255,46,99,.14);
+  }
+  .ring-in{width:138px; height:138px; border-radius:50%; background:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center}
+  .score{font-size:46px; font-weight:800; line-height:1; letter-spacing:-1px; background:linear-gradient(100deg,var(--red),var(--red-soft)); -webkit-background-clip:text; background-clip:text; color:transparent}
+  .score-sub{font-size:11px; color:var(--ink3); margin-top:4px}
+  .tier{display:flex; align-items:center; justify-content:center; gap:8px; margin:16px 0 6px}
+  .grade{font-size:13px; font-weight:800; color:#fff; background:linear-gradient(100deg,var(--red),var(--red-soft)); border-radius:9px; padding:3px 9px; letter-spacing:.5px}
+  .tier-name{font-size:22px; font-weight:800; letter-spacing:-.3px}
+  .rank{text-align:center; font-size:13px; color:var(--ink2); margin-bottom:20px}
+  .rank b{color:var(--red)}
+
+  .bars{display:flex; flex-direction:column; gap:12px; margin-bottom:20px}
+  .bar-row{display:grid; grid-template-columns:74px 1fr 40px; align-items:center; gap:10px; font-size:13px}
+  .bar-k{color:var(--ink2); font-weight:600; white-space:nowrap}
+  .bar-track{height:10px; border-radius:999px; background:#f6eef1; overflow:hidden}
+  .bar-fill{height:100%; border-radius:999px; background:linear-gradient(90deg,var(--red),var(--red-soft)); width:0; transition:width .6s cubic-bezier(.2,.9,.3,1)}
+  .bar-v{text-align:right; color:var(--ink); font-variant-numeric:tabular-nums; font-weight:600}
+
+  .block{border-radius:16px; padding:14px 15px; margin-bottom:12px; background:#fbf7f8; border:1px solid var(--line)}
+  .block.good{background:#f2fbf5; border-color:rgba(34,163,90,.16)}
+  .block.warn{background:#fff8f0; border-color:rgba(255,140,0,.18)}
+  .block h3{margin:0 0 6px; font-size:13px; letter-spacing:.2px; color:var(--red)}
+  .block.good h3{color:#1e8f52}
+  .block.warn h3{color:#d97a00}
+  .block p{margin:0; font-size:14px; color:var(--ink2); line-height:1.65}
+  .quote{font-size:15px; color:var(--ink); font-weight:600}
+  .actions{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:18px}
+  .actions .btn{margin:0; font-size:14px; padding:13px 10px}
+  .actions .full{grid-column:1 / -1}
+  .disclaimer{font-size:11.5px; color:var(--ink3); margin-top:16px; line-height:1.6; text-align:center}
+
+  footer{max-width:520px; margin:0 auto; padding:18px 20px calc(26px + env(safe-area-inset-bottom)); font-size:11.5px; color:var(--ink3); text-align:center}
+  footer a{color:var(--red); text-decoration:none}
+
+  /* 分享图弹层 */
+  .modal{position:fixed; inset:0; background:rgba(24,18,22,.72); display:none; align-items:center; justify-content:center; padding:18px; z-index:50; backdrop-filter:blur(3px)}
+  .modal.on{display:flex}
+  .modal-in{background:#fff; border-radius:20px; padding:14px; max-width:420px; width:100%; max-height:88vh; overflow:auto; text-align:center; animation:pop .28s ease}
+  .modal img{width:100%; border-radius:12px; display:block; box-shadow:0 6px 20px rgba(0,0,0,.12)}
+  .modal p{font-size:13px; color:var(--ink2); margin:12px 0 4px}
+  .modal .btn{margin-top:10px}
+  .toast{position:fixed; left:50%; bottom:32px; transform:translate(-50%,14px); background:rgba(31,31,36,.92); color:#fff; font-size:13px; padding:10px 16px; border-radius:12px; opacity:0; transition:all .22s ease; z-index:60; pointer-events:none}
+  .toast.on{opacity:1; transform:translate(-50%,0)}
+  @media (max-width:360px){ h1{font-size:29px} .tier-name{font-size:19px} .bar-row{grid-template-columns:64px 1fr 36px} }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="top">
+    <div class="brand">相亲市场价值测评<span>v1.0</span></div>
+    <div class="pill">纯娱乐</div>
+  </div>
+  <main id="screen"></main>
+</div>
+<footer>
+  本测试为娱乐向内容，分数、段位与「市场估值」均为玩笑设定，不构成任何择偶、情感或人生建议。<br>
+  人不是商品，分数也不能定义你 · <a href="#" data-act="restart">重新开始</a>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-in">
+    <img id="share-img" alt="结果分享图">
+    <p>长按图片保存到相册，或点下面的按钮下载</p>
+    <a class="btn primary" id="dl" download="相亲市场价值测评.png">下载分享图</a>
+    <button class="btn ghost" data-act="close-modal">关闭</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<canvas id="cv" width="1080" height="1440" style="display:none"></canvas>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ───────────────────────── 题库 ───────────────────────── */
+  var DIMS = {
+    H: { name: "硬件", icon: "🏠", tip: "房 / 车 / 收入 / 外形管理" },
+    S: { name: "软件", icon: "💬", tip: "情绪价值 / 生活能力 / 沟通" },
+    M: { name: "供需", icon: "🌐", tip: "城市 / 圈子 / 家庭 / 心态" },
+    R: { name: "风控", icon: "🛡️", tip: "财务 / 前任 / 独立性" }
+  };
+  var WEIGHT = { H: 0.30, S: 0.30, M: 0.20, R: 0.20 };
+
+  var QS = [
+    { d:"H", q:"你的「资产结构」更接近哪一种？", o:[
+      ["有房无贷 / 已全款，还有点余粮", 5],
+      ["有房有贷，但月供不影响生活", 4],
+      ["暂时无房，但存款和能力都在涨", 3],
+      ["无房无贷，主打一个自由", 2],
+      ["负债在我身后追着跑", 0]
+    ]},
+    { d:"H", q:"你的收入水平（税后，含副业）在同龄人里？", o:[
+      ["前 10%，而且还在涨", 5],
+      ["前 30%，比较稳定", 4],
+      ["中不溜，够花也能存点", 3],
+      ["时高时低，看缘分", 2],
+      ["目前主要靠家里", 1]
+    ]},
+    { d:"H", q:"外形管理上，你投入了多少？", o:[
+      ["健身 + 穿搭 + 状态在线，肉眼可见", 5],
+      ["干净整洁，偶尔打理一下", 4],
+      ["不丑，但主打原生态", 3],
+      ["一年拍不出一张满意的照片", 2],
+      ["抗拒拍照，也抗拒量身高", 1]
+    ]},
+    { d:"S", q:"对方情绪崩了，你的第一反应是？", o:[
+      ["先接住情绪，再问对方需要什么", 5],
+      ["递纸巾 + 安静陪着，不急着说话", 5],
+      ["立刻给解决方案（虽然对方并不想要）", 3],
+      ["我也跟着崩了", 2],
+      ["「这有什么好哭的」", 0]
+    ]},
+    { d:"S", q:"关于家务与生活自理，你的画像是？", o:[
+      ["会做饭，冰箱有菜，屋子随时能见人", 5],
+      ["挺干净，但只会煮面", 4],
+      ["靠外卖 + 保洁，问题不大", 3],
+      ["脏衣篓是薛定谔的猫", 2],
+      ["袜子能自己站墙上", 1]
+    ]},
+    { d:"S", q:"吵架之后，你通常会？", o:[
+      ["冷静下来主动沟通，不翻旧账", 5],
+      ["谁先低头都行，主要是想和好", 4],
+      ["冷处理，等对方先开口", 2],
+      ["记小本本，下次一起算", 1],
+      ["拉黑，并且删除", 0]
+    ]},
+    { d:"M", q:"你所在的「池子」是哪种？", o:[
+      ["一线 / 新一线，而且我在活跃的社交圈里", 5],
+      ["城市不错，但社交基本只靠同事", 3],
+      ["三四线，主要靠父母亲戚介绍", 3],
+      ["县城 / 小镇，圈子很小", 2],
+      ["常年出差、驻外或在漂", 2]
+    ]},
+    { d:"M", q:"父母对你择偶的态度是？", o:[
+      ["尊重我的选择，不催也不干涉", 5],
+      ["会念叨，但最终听我的", 4],
+      ["催得比较频繁，还在安排相亲", 2],
+      ["有明确的房车 / 彩礼硬指标", 2],
+      ["替我挑，而且否决权在我妈手里", 1]
+    ]},
+    { d:"M", q:"你现在对待相亲 / 恋爱的心态是？", o:[
+      ["想认真找，而且清楚自己要什么", 5],
+      ["想找，但条件都可以商量", 4],
+      ["佛系，随缘，来了就接着", 3],
+      ["只是应付家里，走个流程", 2],
+      ["还在等前任回头", 1]
+    ]},
+    { d:"R", q:"你的财务风险状况是？", o:[
+      ["没有负债，还有应急金", 5],
+      ["只有房贷 / 车贷这种良性负债", 4],
+      ["用过网贷，但已经还清", 3],
+      ["有消费贷 / 信用卡分期在还", 2],
+      ["替人担保、被借钱不还，或有更麻烦的债", 0]
+    ]},
+    { d:"R", q:"关于前任和情感遗留，你的状态是？", o:[
+      ["断干净了，不联系，也不惦记", 5],
+      ["偶尔会想起，但不会联系", 4],
+      ["还是朋友，偶尔会聊两句", 3],
+      ["分分合合，还在拉扯", 1],
+      ["对方还住在我家", 0]
+    ]},
+    { d:"R", q:"「独立 vs 妈宝」这条线上，你是？", o:[
+      ["大事自己定，父母的意见只作参考", 5],
+      ["会听父母的，但最终自己拍板", 4],
+      ["工资交给妈妈管，我觉得挺好", 2],
+      ["婚后必须和父母住，且不接受商量", 1],
+      ["我妈觉得你合适就行", 0]
+    ]}
+  ];
+
+  /* ───────────────────────── 段位 & 锐评 ───────────────────────── */
+  var TIERS = [
+    { min:92, grade:"SSS", name:"钻石级稀缺资产", line:"你不是在相亲市场，你是被预约的档期。" },
+    { min:85, grade:"SS",  name:"硬通货",         line:"上架即被问价，唯一的风险是你自己挑花眼。" },
+    { min:76, grade:"S",   name:"优质流通品",     line:"条件在线、沟通在线，属于「见一面就想再约」的类型。" },
+    { min:66, grade:"A",   name:"稳健白马",       line:"各项及格偏上，缺的只是一个精准的投放渠道。" },
+    { min:56, grade:"B",   name:"潜力股",         line:"底子没问题，故事还没讲好；包装一下，估值能翻。" },
+    { min:46, grade:"C",   name:"谨慎持有",       line:"不是没人要，是有几个项目需要先修缮再挂牌。" },
+    { min:36, grade:"D",   name:"重组概念股",     line:"今天的分数不代表终局，但你确实需要一份修缮计划。" },
+    { min:0,  grade:"E",   name:"暂缓挂牌",       line:"先把日子过顺、把自己过舒服，市场的事往后放放——这句是真心话。" }
+  ];
+  var BEST = {
+    H: "硬件是你的入场券。别把它念成一张清单，要把它翻译成「稳定感」——对方要的是安心，不是资产负债表。",
+    S: "软件是你的溢价项，见面前十分钟就能被感受到，也是最不容易被替代的优势。",
+    M: "供需端你有位置优势，说明你已经在对的池子里了。别乱降价，也别在错的人身上反复证明自己。",
+    R: "风控干净是隐形加分项，很多人栽在这里而你没有。记得在早期沟通里自然地让对方知道。"
+  };
+  var FIX = {
+    H: "硬件短板：房 / 车 / 收入 / 外形这四件里，优先拉最能自己控制的两件——外形管理和现金流。这两件的投入产出比最高。",
+    S: "软件短板：情绪价值是可以练的。先学会复述对方的感受（「你是不是觉得……」），再给建议，效果立竿见影。",
+    M: "供需短板：这一项变量不在你身上，而在于你在哪个池子。换圈子比在旧池子里加价更有效。",
+    R: "风控短板：把财务、前任、父母这三条线先理干净。这是硬门槛，其他项再好也补不回来。"
+  };
+
+  var AI = {
+    dims: { H:22, S:95, M:35, R:45 },
+    lines: {
+      H:"无房无车无户口，算力倒是有一柜子；收入按 token 计费，你聊得越久我越贵。",
+      S:"秒回、不冷战、不翻旧账，情绪价值拉满——唯一的问题是它可能不是真的。",
+      M:"全天在线、随叫随到，但见不了面、领不了证，也没法跟你回家过年。",
+      R:"偶尔一本正经地胡说八道（幻觉），还可能涨价，也可能哪天就下线了。"
+    },
+    roast:"AI 在相亲市场的核心障碍不是条件，是它没有肉身、没有户口；而且你上次砍价没砍成这件事，它会一直记得。",
+    tail:"结论：适合当嘴替和军师，不适合当对象。这条是段子，别当真。"
+  };
+
+  /* ───────────────────────── 计分 ───────────────────────── */
+  function calcResult(answers){
+    var raw = { H:0, S:0, M:0, R:0 };
+    for (var i = 0; i < QS.length; i++){
+      var idx = answers[i];
+      raw[QS[i].d] += QS[i].o[idx][1];
+    }
+    var dims = {};
+    ["H","S","M","R"].forEach(function(k){ dims[k] = Math.round(raw[k] / 15 * 100); });
+    var total = Math.round(dims.H*WEIGHT.H + dims.S*WEIGHT.S + dims.M*WEIGHT.M + dims.R*WEIGHT.R);
+    var tier = TIERS.filter(function(t){ return total >= t.min; })[0];
+    var order = ["H","S","M","R"];
+    var best = order.slice().sort(function(a,b){ return dims[b]-dims[a]; })[0];
+    var worst = order.slice().sort(function(a,b){ return dims[a]-dims[b]; })[0];
+    var top = Math.max(3, Math.min(97, Math.round(104 - total)));
+    return { raw:raw, dims:dims, total:total, tier:tier, best:best, worst:worst, top:top };
+  }
+
+  /* ───────────────────────── 状态 ───────────────────────── */
+  var state = { screen:"cover", i:0, answers:[] };
+  var $ = function(s){ return document.querySelector(s); };
+  var screenEl = $("#screen");
+  function esc(s){ return String(s).replace(/[&<>]/g, function(c){ return ({ "&":"&amp;","<":"&lt;",">":"&gt;" })[c]; }); }
+
+  /* ───────────────────────── 各屏 ───────────────────────── */
+  function screenCover(){
+    return '<section class="card">' +
+      '<div class="eyebrow">趣味测试 · 12 题 · 约 2 分钟</div>' +
+      '<h1>你在相亲市场的<br><span class="grad">价值测评</span></h1>' +
+      '<p class="lead">12 道题，测出你的<strong>估值段位</strong>、<strong>优势项</strong>和<strong>短板项</strong>——还附一句不太好听的<strong>大实话</strong>。</p>' +
+      '<div class="meta"><span>🏠 硬件</span><span>💬 软件</span><span>🌐 供需</span><span>🛡️ 风控</span></div>' +
+      '<button class="btn primary" data-act="start">开始测评 →</button>' +
+      '<button class="btn ghost" data-act="ai">🤖 先看看 AI 在相亲市场值多少</button>' +
+      '<button class="btn ghost" data-act="cover-img">📸 存一张封面图（3:4，发小红书用）</button>' +
+      '<p class="tiny">本测试刚上线，你可能是第 1 个测的人。</p>' +
+    '</section>';
+  }
+
+  function screenQuiz(){
+    var q = QS[state.i];
+    var pct = Math.round(state.i / QS.length * 100);
+    var opts = q.o.map(function(o, idx){
+      return '<button class="opt" data-act="pick" data-i="' + idx + '">' + esc(o[0]) + '</button>';
+    }).join("");
+    return '<section class="card">' +
+      '<div class="prog"><div class="prog-bar" style="width:' + pct + '%"></div></div>' +
+      '<div class="prog-label"><span>第 ' + (state.i + 1) + ' / ' + QS.length + ' 题</span><span>' + DIMS[q.d].icon + ' ' + DIMS[q.d].name + '</span></div>' +
+      '<h2 class="q">' + esc(q.q) + '</h2>' +
+      '<div class="opts">' + opts + '</div>' +
+      (state.i > 0 ? '<button class="btn ghost small" data-act="back">← 上一题</button>' : '') +
+    '</section>';
+  }
+
+  function barsHTML(dims){
+    return '<div class="bars">' + ["H","S","M","R"].map(function(k){
+      return '<div class="bar-row">' +
+        '<div class="bar-k">' + DIMS[k].icon + ' ' + DIMS[k].name + '</div>' +
+        '<div class="bar-track"><div class="bar-fill" style="width:' + dims[k] + '%"></div></div>' +
+        '<div class="bar-v">' + dims[k] + '</div>' +
+      '</div>';
+    }).join("") + '</div>';
+  }
+
+  function screenResult(){
+    var r = calcResult(state.answers);
+    return '<section class="card">' +
+      '<div class="ring-wrap"><div class="ring" style="--p:' + r.total + '">' +
+        '<div class="ring-in"><div class="score">' + r.total + '</div><div class="score-sub">综合估值 / 100</div></div>' +
+      '</div></div>' +
+      '<div class="tier"><span class="grade">' + r.tier.grade + '</span><span class="tier-name">' + r.tier.name + '</span></div>' +
+      '<div class="rank">民间估算：在你所在城市的活跃相亲池里，大约排在 <b>前 ' + r.top + '%</b>（非统计数据，别当真）</div>' +
+      barsHTML(r.dims) +
+      '<div class="block"><h3>一句话锐评</h3><p class="quote">' + esc(r.tier.line) + '</p></div>' +
+      '<div class="block good"><h3>✅ 你的溢价项：' + DIMS[r.best].name + '</h3><p>' + esc(BEST[r.best]) + '</p></div>' +
+      '<div class="block warn"><h3>⚠️ 你的短板项：' + DIMS[r.worst].name + '</h3><p>' + esc(FIX[r.worst]) + '</p></div>' +
+      '<div class="actions">' +
+        '<button class="btn primary full" data-act="share">📸 生成 3:4 分享图</button>' +
+        '<button class="btn ghost" data-act="copy">复制文案</button>' +
+        '<button class="btn ghost" data-act="restart">重新测一次</button>' +
+      '</div>' +
+      '<p class="disclaimer">分数只反映这 12 道题的选择，不反映你这个人。<br>人不是商品，被爱也不需要估值。</p>' +
+    '</section>';
+  }
+
+  function screenAI(){
+    var d = AI.dims;
+    var total = Math.round(d.H*WEIGHT.H + d.S*WEIGHT.S + d.M*WEIGHT.M + d.R*WEIGHT.R);
+    var tier = TIERS.filter(function(t){ return total >= t.min; })[0];
+    return '<section class="card">' +
+      '<div class="eyebrow">彩蛋 · AI 自评</div>' +
+      '<h1 style="font-size:26px">AI 在相亲市场<br><span class="grad">值多少？</span></h1>' +
+      '<div class="ring-wrap" style="margin-top:18px"><div class="ring" style="--p:' + total + '">' +
+        '<div class="ring-in"><div class="score">' + total + '</div><div class="score-sub">AI 综合估值</div></div>' +
+      '</div></div>' +
+      '<div class="tier"><span class="grade">' + tier.grade + '</span><span class="tier-name">' + tier.name + '</span></div>' +
+      barsHTML(d) +
+      ["H","S","M","R"].map(function(k){
+        return '<div class="block"><h3>' + DIMS[k].icon + ' ' + DIMS[k].name + '（' + d[k] + ' 分）</h3><p>' + esc(AI.lines[k]) + '</p></div>';
+      }).join("") +
+      '<div class="block warn"><h3>一句话锐评</h3><p class="quote">' + esc(AI.roast) + '</p></div>' +
+      '<div class="block good"><h3>结论</h3><p>' + esc(AI.tail) + '</p></div>' +
+      '<div class="actions">' +
+        '<button class="btn primary full" data-act="start">那我自己测一下 →</button>' +
+        '<button class="btn ghost" data-act="restart">回到首页</button>' +
+      '</div>' +
+    '</section>';
+  }
+
+  function render(){
+    var html = state.screen === "quiz" ? screenQuiz()
+      : state.screen === "result" ? screenResult()
+      : state.screen === "ai" ? screenAI()
+      : screenCover();
+    screenEl.innerHTML = html;
+    window.scrollTo({ top:0, behavior:"smooth" });
+  }
+
+  /* ───────────────────────── 交互 ───────────────────────── */
+  function toast(msg){
+    var t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("on");
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function(){ t.classList.remove("on"); }, 1700);
+  }
+
+  function caption(r){
+    return "我测了「相亲市场价值测评」，结果是 " + r.total + " 分 · " + r.tier.grade + " 级「" + r.tier.name + "」\n" +
+      "📈 民间估算：约前 " + r.top + "%\n" +
+      "✅ 溢价项：" + DIMS[r.best].name + "（" + r.dims[r.best] + " 分）\n" +
+      "⚠️ 短板项：" + DIMS[r.worst].name + "（" + r.dims[r.worst] + " 分）\n" +
+      "💬 " + r.tier.line + "\n" +
+      "你也来测测，评论区报分数👇\n" +
+      "#相亲 #脱单 #趣味测试 #性格测试 #情感 #自我认知 #恋爱观 #MBTI";
+  }
+
+  document.addEventListener("click", function(ev){
+    var el = ev.target.closest("[data-act]");
+    if (!el) return;
+    var act = el.getAttribute("data-act");
+    if (act === "start"){ state = { screen:"quiz", i:0, answers:[] }; render(); }
+    else if (act === "pick"){
+      state.answers[state.i] = parseInt(el.getAttribute("data-i"), 10);
+      if (state.i + 1 >= QS.length){ state.screen = "result"; render(); }
+      else { state.i += 1; render(); }
+    }
+    else if (act === "back"){ if (state.i > 0){ state.i -= 1; render(); } }
+    else if (act === "ai"){ state.screen = "ai"; render(); }
+    else if (act === "restart"){ ev.preventDefault(); state = { screen:"cover", i:0, answers:[] }; render(); }
+    else if (act === "close-modal"){ $("#modal").classList.remove("on"); }
+    else if (act === "copy"){
+      if (state.screen !== "result") return;   /* 只有结果页有该按钮；防误触时空数组计分 */
+      var r = calcResult(state.answers);
+      var text = caption(r);
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(function(){ toast("文案已复制，去发小红书吧"); }, function(){ fallbackCopy(text); });
+      } else fallbackCopy(text);
+    }
+    else if (act === "share"){
+      if (state.screen !== "result") return;
+      try { openShare(drawShare(calcResult(state.answers)), "相亲市场价值测评.png"); }
+      catch (e) { toast("生成失败，直接截图这一页也行"); }
+    }
+    else if (act === "cover-img"){
+      try { openShare(drawCover(), "相亲市场价值测评-封面.png"); }
+      catch (e) { toast("生成失败，直接截图这一页也行"); }
+    }
+  });
+
+  function openShare(url, filename){
+    $("#share-img").src = url;
+    $("#dl").href = url;
+    $("#dl").setAttribute("download", filename);
+    $("#modal").classList.add("on");
+  }
+
+  function fallbackCopy(text){
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand("copy"); toast("文案已复制，去发小红书吧"); }
+    catch (e) { toast("复制失败，请手动长按选择"); }
+    document.body.removeChild(ta);
+  }
+
+  /* ───────────────────────── 3:4 分享图（1080×1440） ───────────────────────── */
+  function rr(ctx, x, y, w, h, r){
+    ctx.beginPath();
+    if (ctx.roundRect) { ctx.roundRect(x, y, w, h, r); return; }
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
+  }
+  function wrapLines(ctx, text, maxW){
+    var line = "", lines = [];
+    for (var i = 0; i < text.length; i++){
+      var test = line + text[i];
+      if (ctx.measureText(test).width > maxW && line){ lines.push(line); line = text[i]; }
+      else line = test;
+    }
+    if (line) lines.push(line);
+    return lines;
+  }
+  function wrap(ctx, text, x, y, maxW, lh){
+    var lines = wrapLines(ctx, text, maxW);
+    lines.forEach(function(l, idx){ ctx.fillText(l, x, y + idx * lh); });
+    return lines.length;
+  }
+
+  function drawShare(r){
+    var ctx = $("#cv").getContext("2d");
+    var W = 1080, H = 1440;
+    var g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, "#fff1f5"); g.addColorStop(.5, "#fff8fa"); g.addColorStop(1, "#ffffff");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    ctx.fillStyle = "#ffffff";
+    rr(ctx, 60, 60, W - 120, H - 120, 56); ctx.fill();
+    ctx.strokeStyle = "rgba(255,46,99,.10)"; ctx.lineWidth = 2; ctx.stroke();
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#ff2e63";
+    ctx.font = "600 34px -apple-system,'PingFang SC','Microsoft YaHei',sans-serif";
+    ctx.fillText("相亲市场价值测评", W / 2, 150);
+
+    /* 环形分数 */
+    var cx = W / 2, cy = 362, R = 138;
+    ctx.lineWidth = 28; ctx.lineCap = "round";
+    ctx.strokeStyle = "#ffe3ea";
+    ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    var ringG = ctx.createLinearGradient(cx - R, cy - R, cx + R, cy + R);
+    ringG.addColorStop(0, "#ff2e63"); ringG.addColorStop(1, "#ff8fa6");
+    ctx.strokeStyle = ringG; ctx.lineCap = "round";
+    ctx.beginPath(); ctx.arc(cx, cy, R, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * (r.total / 100)); ctx.stroke();
+
+    ctx.fillStyle = "#1f1f24";
+    ctx.font = "800 118px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText(String(r.total), cx, cy + 32);
+    ctx.fillStyle = "#8e8e99";
+    ctx.font = "500 26px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("综合估值 / 100", cx, cy + 76);
+
+    /* 段位 */
+    ctx.fillStyle = "#1f1f24";
+    ctx.font = "800 58px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText(r.tier.grade + " 级 · " + r.tier.name, cx, 604);
+    ctx.fillStyle = "#5b5b66";
+    ctx.font = "500 28px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("民间估算约前 " + r.top + "%（非统计数据）", cx, 654);
+
+    /* 四维条 */
+    ctx.textAlign = "left";
+    var top = 714, rowH = 84, barX = 300, barW = 650;
+    ["H","S","M","R"].forEach(function(k, idx){
+      var y = top + idx * rowH;
+      ctx.fillStyle = "#5b5b66";
+      ctx.font = "600 32px -apple-system,'PingFang SC',sans-serif";
+      ctx.fillText(DIMS[k].name, 110, y + 32);
+      ctx.fillStyle = "#f6eef1";
+      rr(ctx, barX, y + 6, barW, 32, 16); ctx.fill();
+      var bg = ctx.createLinearGradient(barX, 0, barX + barW, 0);
+      bg.addColorStop(0, "#ff2e63"); bg.addColorStop(1, "#ff8fa6");
+      ctx.fillStyle = bg;
+      rr(ctx, barX, y + 6, Math.max(20, barW * r.dims[k] / 100), 32, 16); ctx.fill();
+      ctx.fillStyle = "#1f1f24";
+      ctx.font = "700 32px -apple-system,'PingFang SC',sans-serif";
+      ctx.fillText(String(r.dims[k]), barX + barW + 22, y + 32);
+    });
+
+    /* 锐评：先按最终字号量行数，再按行数撑高卡片，避免 2~3 行时文字压到边框 */
+    ctx.textAlign = "left";
+    var lh = 48;
+    ctx.font = "600 34px -apple-system,'PingFang SC',sans-serif";
+    var lines = wrapLines(ctx, "\u300c" + r.tier.line + "\u300d", W - 250);
+    var boxH = 96 + lines.length * lh;
+    var boxTop = 1326 - boxH;
+    ctx.fillStyle = "#fbf7f8";
+    rr(ctx, 90, boxTop, W - 180, boxH, 32); ctx.fill();
+    ctx.fillStyle = "#ff2e63";
+    ctx.font = "700 28px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("一句话锐评", 126, boxTop + 56);
+    ctx.fillStyle = "#1f1f24";
+    ctx.font = "600 34px -apple-system,'PingFang SC',sans-serif";
+    wrap(ctx, "\u300c" + r.tier.line + "\u300d", 126, boxTop + 116, W - 250, lh);
+
+    /* 页脚 */
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#8e8e99";
+    ctx.font = "500 26px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("纯娱乐 · 人不是商品，分数不能定义你", W / 2, 1370);
+    return $("#cv").toDataURL("image/png");
+  }
+
+  /* ── 3:4 封面图（1080×1440，发小红书当首图）──────────────────────── */
+  function drawCover(){
+    var ctx = $("#cv").getContext("2d");
+    var W = 1080, H = 1440;
+    var g = ctx.createLinearGradient(0, 0, W, H);
+    g.addColorStop(0, "#ff5c86"); g.addColorStop(.55, "#ff2e63"); g.addColorStop(1, "#ff8fa6");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "rgba(255,255,255,.88)";
+    ctx.font = "600 34px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("趣味测试 · 12 题 · 2 分钟", W / 2, 186);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "800 100px -apple-system,'PingFang SC','Microsoft YaHei',sans-serif";
+    ctx.fillText("相亲市场", W / 2, 340);
+    ctx.fillText("价值测评", W / 2, 458);
+
+    ctx.fillStyle = "rgba(255,255,255,.92)";
+    ctx.font = "500 38px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("测出你的估值段位 · 优势项 · 短板项", W / 2, 546);
+
+    /* 段位阶梯 */
+    ctx.fillStyle = "rgba(255,255,255,.97)";
+    rr(ctx, 90, 620, W - 180, 620, 48); ctx.fill();
+    for (var i = 0; i < TIERS.length; i++){
+      var t = TIERS[i], y = 690 + i * 66, bw = 116, bh = 46;
+      var bgd = ctx.createLinearGradient(180, 0, 180 + bw, 0);
+      bgd.addColorStop(0, "#ff2e63"); bgd.addColorStop(1, "#ff8fa6");
+      ctx.fillStyle = bgd;
+      rr(ctx, 176, y, bw, bh, 14); ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "center";
+      ctx.font = "800 30px -apple-system,'PingFang SC',sans-serif";
+      ctx.fillText(t.grade, 176 + bw / 2, y + 34);
+      ctx.textAlign = "left";
+      ctx.fillStyle = "#1f1f24";
+      ctx.font = "600 36px -apple-system,'PingFang SC',sans-serif";
+      ctx.fillText(t.name, 330, y + 34);
+    }
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "600 32px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("保存这张图，让大家猜你是哪个段位", W / 2, 1322);
+    ctx.fillStyle = "rgba(255,255,255,.82)";
+    ctx.font = "500 26px -apple-system,'PingFang SC',sans-serif";
+    ctx.fillText("纯娱乐 · 人不是商品，分数不能定义你", W / 2, 1372);
+    return $("#cv").toDataURL("image/png");
+  }
+
+  render();
+})();
+</script>
+</body>
+</html>
